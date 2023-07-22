@@ -1,0 +1,11 @@
+{
+    "files.associations": {
+        "argon2.h": "c",
+        "core.h": "c",
+        "postgres.h": "c",
+        "fmgr.h": "c",
+        "endian.h": "c",
+        "elog.h": "c",
+        "builtins.h": "c"
+    }
+}

@@ -1,0 +1,26 @@
+name: Build
+
+on:
+  push:
+
+concurrency:
+  group: ci-build-${{ github.head_ref || github.ref_name }}
+  cancel-in-progress: true
+
+jobs:
+  build:
+    name: Build
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+        with:
+          submodules: recursive
+
+      - name: Install postgres
+        run: |
+          apt-get update
+          apt-get -y install --no-install-recommends postgresql-server-dev-15
+
+      - name: Build
+        run: make
