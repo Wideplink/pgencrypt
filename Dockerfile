@@ -8,8 +8,7 @@ RUN make
 
 FROM postgres:bookworm
 COPY --from=compiler /app/pgencrypt.so /usr/lib/postgresql/15/lib/
-COPY --from=compiler /app/pgencrypt.control /usr/share/postgresql/15/extension/
-COPY --from=compiler /app/pgencrypt--*.sql /usr/share/postgresql/15/extension/
+COPY --from=compiler /app/pgencrypt.control /app/pgencrypt--*.sql /usr/share/postgresql/15/extension/
 RUN mkdir -p /docker-entrypoint-initdb.d
 COPY ./initdb-pgencrypt.sh /docker-entrypoint-initdb.d/10_pgencrypt.sh
 COPY ./update-pgencrypt.sh /usr/local/bin
